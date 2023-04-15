@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: Demo API
+  version: '1.0'
+  description: Demo Spec
+paths:
+  /examples:
+    get:
+      summary: Get all examples
+      operationId: get-examples
+      tags:
+        - Example
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Example'
+    post:
+      summary: Create example
+      operationId: create-example
+      tags:
+        - Example
+      requestBody:
+        description: Create a new example
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Example'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Example'
+  /examples/{exampleId}:
+    parameters:
+      - $ref: '#/components/parameters/ExampleId'
+    get:
+      summary: Get example
+      operationId: get-example
+      tags:
+        - Example
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Example'
+        '404':
+          $ref: '#/components/responses/404'
+components:
+  parameters:
+    ExampleId:
+      name: exampleId
+      in: path
+      description: ID of the example to be retrieved
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    Example:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+          example: 1
+        name:
+          type: string
+          example: Example
+      required:
+        - id
+        - name
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: ERROR.1234
+        message:
+          type: string
+          example: This is an error message
+  responses:
+    '404':
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
