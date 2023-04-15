@@ -1,0 +1,77 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.springframework.boot' version '3.0.5'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id "org.openapi.generator" version "6.5.0"
+}
+
+group = 'com.skeleton'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    mainClass = 'com/example/skeleton/app/SpringBootSkeletonApplication'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    runtimeOnly 'com.h2database:h2'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.mapstruct:mapstruct:1.5.4.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.4.Final'
+
+    compileOnly('org.openapitools:openapi-generator-gradle-plugin:6.5.0') {
+        exclude group: 'org.slf4j'
+    }
+
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.4'
+    implementation 'io.swagger.core.v3:swagger-core:2.2.8'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$projectDir/src/main/resources/api-specification.yaml"
+    outputDir = "$buildDir/generated"
+    apiPackage = "com.example.skeleton.api"
+    modelPackage = "com.example.skeleton.api.model"
+    configOptions = [
+            delegatePattern : "true",
+            generateApiTests: "false",
+            useBeanValidation: "true",
+            useTags: "true",
+            useSpringBoot3: "true"
+    ]
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+sourceSets.main.java.srcDirs += "$buildDir/generated/src/main/java"
+
+compileJava.dependsOn tasks.openApiGenerate
