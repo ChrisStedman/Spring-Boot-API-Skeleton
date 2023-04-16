@@ -2,6 +2,7 @@ package com.example.skeleton.service;
 
 import com.example.skeleton.api.model.Example;
 import com.example.skeleton.domain.ExampleDomain;
+import com.example.skeleton.mapper.ExampleMapper;
 import com.example.skeleton.repository.ExampleRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ExampleService {
 
     private final ExampleRepository exampleRepository;
+    private final ExampleMapper exampleMapper;
 
     public List<ExampleDomain> getExamples(){
 
@@ -25,8 +27,7 @@ public class ExampleService {
     }
 
     public ExampleDomain createExample(Example example){
-        ExampleDomain exampleDomain = new ExampleDomain();
-        exampleDomain.setName(example.getName());
+        ExampleDomain exampleDomain = exampleMapper.toExampleDomain(example);
 
         return exampleRepository.saveAndFlush(exampleDomain);
     }
