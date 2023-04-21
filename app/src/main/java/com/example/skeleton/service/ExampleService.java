@@ -1,22 +1,39 @@
 package com.example.skeleton.service;
 
 import com.example.skeleton.api.model.Example;
+import com.example.skeleton.domain.ExampleDomain;
+import com.example.skeleton.repository.ExampleRepository;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ExampleService {
 
-    public List<Example> getExamples(){
-        return List.of(new Example(1L, "Stubbed example"));
+    private final ExampleRepository exampleRepository;
+
+    public List<ExampleDomain> getExamples(){
+
+        List<ExampleDomain> examples = exampleRepository.findAll();
+
+        return examples;
     }
 
-    public Example createExample(Example example){
-        return new Example(1L, example.getName());
+    public ExampleDomain createExample(Example example){
+        ExampleDomain exampleDomain = new ExampleDomain();
+        exampleDomain.setName(example.getName());
+
+        return exampleRepository.saveAndFlush(exampleDomain);
     }
 
-    public Example getExample(Long exampleId){
-        return new Example(exampleId, "Stubbed example");
+    public ExampleDomain getExample(Long exampleId){
+        Optional<ExampleDomain> example = exampleRepository.findById(exampleId);
+
+        return example.orElseThrow(EntityNotFoundException::new);
     }
 }

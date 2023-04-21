@@ -2,6 +2,7 @@ package com.example.skeleton.api.delegate;
 
 import com.example.skeleton.api.ExampleApiDelegate;
 import com.example.skeleton.api.model.Example;
+import com.example.skeleton.domain.ExampleDomain;
 import com.example.skeleton.service.ExampleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,25 +18,37 @@ public class ExampleApiDelegateImpl implements ExampleApiDelegate {
 
     @Override
     public ResponseEntity<List<Example>> getExamples(){
-        List<Example> examples = exampleService.getExamples();
+        List<ExampleDomain> examples = exampleService.getExamples();
+
+        List<Example> mappedExamples =  examples.stream()
+                .map(this::mapToExample)
+                .toList();
 
         return ResponseEntity.ok()
-                .body(examples);
+                .body(mappedExamples);
     }
 
     @Override
     public ResponseEntity<Example> createExample(Example example) {
-        Example createdExample = exampleService.createExample(example);
+        ExampleDomain createdExample = exampleService.createExample(example);
+
+        Example responseExample = mapToExample(createdExample);
 
         return ResponseEntity.ok()
-                .body(createdExample);
+                .body(responseExample);
     }
 
     @Override
     public ResponseEntity<Example> getExample(Long exampleId) {
-        Example example = exampleService.getExample(exampleId);
+        ExampleDomain example = exampleService.getExample(exampleId);
+
+        Example responseExample = mapToExample(example);
 
         return ResponseEntity.ok()
-                .body(example);
+                .body(responseExample);
+    }
+
+    private Example mapToExample(ExampleDomain exampleDomain){
+        return new Example(exampleDomain.getId(), exampleDomain.getName());
     }
 }
