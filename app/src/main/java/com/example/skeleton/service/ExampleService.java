@@ -2,9 +2,9 @@ package com.example.skeleton.service;
 
 import com.example.skeleton.api.model.Example;
 import com.example.skeleton.domain.ExampleDomain;
+import com.example.skeleton.domain.exception.ExampleNotFoundException;
 import com.example.skeleton.mapper.ExampleMapper;
 import com.example.skeleton.repository.ExampleRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +35,6 @@ public class ExampleService {
     public ExampleDomain getExample(Long exampleId){
         Optional<ExampleDomain> example = exampleRepository.findById(exampleId);
 
-        return example.orElseThrow(EntityNotFoundException::new);
+        return example.orElseThrow(() -> new ExampleNotFoundException(exampleId));
     }
 }
