@@ -8,13 +8,14 @@ Examples which increase in complexity/functionality have been included to illust
 
 ### Includes:
 
-| Functionality        | Tool              |
-|----------------------|-------------------|
-| Code generation      | OpenApi Generator |
-| Database (in-memory) | H2                |
-| Generate boilerplate | Lombok            |
-| Mapping              | MapStruct         |
-| Mocking              | Mockito           |
+| Functionality         | Tool                 |
+|-----------------------|----------------------|
+| Code generation       | OpenApi Generator    |
+| Database (in-memory)  | H2                   |
+| Database (Postgres)   | Docker</br>Postgres  |
+| Generate boilerplate  | Lombok               |
+| Mapping               | MapStruct            |
+| Mocking               | Mockito              |
 
 
 ## 🔨 Project Setup
@@ -66,10 +67,10 @@ _If a configuration was not created, it is likely due to a project configuration
 
 ### Using Postgres Database
 1. Set the active profile to `dev` in the run configuration
-2. Go to [Starting Container](#starting-container) section and follow the instructions
+2. Go to the [Starting Container](#starting-container) section and follow the instructions
    - The Postgres database will run inside a docker container
 3. Connect
-   4. _Remember to [stop the container](#stopping-container) when you are finished_
+4. _Remember to [stop the container](#stopping-container) when you are finished_
 
 #### To access the Postgres database
 - **Option 1:**
