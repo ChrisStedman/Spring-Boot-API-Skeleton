@@ -8,12 +8,14 @@ Examples which increase in complexity/functionality have been included to illust
 
 ### Includes:
 
-| Functionality                     | Dependency                  |
-|-----------------------------------|-----------------------------|
-| Generate code from specifications | OpenApi Generator           |
-| Postgres connectivity             | Docker</br>Postgres</br>JPA |
-| Generate boilerplate code         | Lombok                      |
-| Map between POJOs                 | MapStruct                   |
+| Functionality        | Tool              |
+|----------------------|-------------------|
+| Code generation      | OpenApi Generator |
+| Database (in-memory) | H2                |
+| Generate boilerplate | Lombok            |
+| Mapping              | MapStruct         |
+| Mocking              | Mockito           |
+
 
 ## 🔨 Project Setup
 Depending on your local setup, some of these steps may not be required.
