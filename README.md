@@ -49,20 +49,34 @@ in the project, and opening the project again.
 
 ## 🏃 Running Project
 When the project is configured correctly, a Spring run configuration will be created automatically.
-Simply click play, wait for the application to load and use Postman to send some requests.
 
 _If a configuration was not created, it is likely due to a project configuration issue. Check the `Project Setup` section again_
 
-By default, the application will use an in-memory H2 database.  
-To access the H2 console:
+### Using in-memory H2 database
+1. Set the active profile to `local` in the `run configuration`
+   - If no profile is set, `local` is also the default profile
+- Run the application
+
+#### To access the H2 console:
 1. Search the console for the text `Database available at` (output during startup) and copy the value after it.  
    - E.g. `jdbc:h2:mem:ed52ba88-3369-46e6-89c3-5974a844db46`
 2. Go to `http://localhost:8080/h2-console/`
 3. Set `JDBC URL` to the copied value
 4. Connect
 
+### Using Postgres Database
+1. Set the active profile to `dev` in the run configuration
+2. Go to [Starting Container](#starting-container) section and follow the instructions
+   - The Postgres database will run inside a docker container
+3. Connect
+   4. _Remember to [stop the container](#stopping-container) when you are finished_
 
-
+#### To access the Postgres database
+- **Option 1:**
+  - Configure a data source in IntelliJ, using the properties from `application-dev.properties`
+- **Option 2:**
+  - Install [DBeaver](https://dbeaver.io/) or another database tool
+  - Configure a new connection using the properties from `application-dev.properties`
 
 ## 🎯 Usage
 ### Hitting an endpoint
@@ -92,6 +106,21 @@ Use the pre-defined class `ExampleApiDelegateImpl`  as a template.
 Create a new postman request to hit the newly created endpoint. See the [Postman](#postman) guide for more information.
 
 Run the application and hit the new endpoint using Postman.
+
+## 🗄️ Postgres Database
+### Starting container
+- Open Docker Desktop
+- Using the terminal, navigate into the `postgres` directory
+- Execute `docker-compose up -d --build`
+- This will run Postgres database server in a docker container
+
+### Stopping container
+- Using the terminal, navigate into the `postgres` directory
+- Execute `docker-compose down -v`
+
+### Modifying Database
+- Change the database name by modifying `POSTGRES_DB` in `docker-compose.yml
+- Create your own schemas, tables and values by adding SQL queries to `init.sql`
 
 ## 👌 Guides
 #### [OpenApi Generator](docs/OpenApi-Generator.md)
