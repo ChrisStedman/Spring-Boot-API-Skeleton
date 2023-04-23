@@ -46,7 +46,7 @@ dependencies {
         exclude group: 'org.slf4j'
     }
 
-    implementation 'org.openapitools:jackson-databind-nullable:0.2.4'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
     implementation 'io.swagger.core.v3:swagger-core:2.2.8'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
