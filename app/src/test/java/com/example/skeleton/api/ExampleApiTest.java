@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,6 +26,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -49,6 +51,8 @@ public class ExampleApiTest {
         when(exampleRepository.findAll()).thenReturn(buildExampleList());
 
         RestAssuredMockMvc
+                .given()
+                    .auth().with(httpBasicAuth())
                 .when()
                     .get("/examples")
                 .then()
@@ -66,6 +70,8 @@ public class ExampleApiTest {
         when(exampleRepository.findById(any())).thenReturn(Optional.empty());
 
         RestAssuredMockMvc
+                .given()
+                    .auth().with(httpBasicAuth())
                 .when()
                     .get("/examples/{exampleId}", 1)
                 .then()
@@ -74,6 +80,21 @@ public class ExampleApiTest {
                     .contentType(ContentType.JSON)
                     .body("code", equalTo("EX.404"))
                     .body("message", equalTo("Example with id 1 not found"));
+    }
+
+    @Test
+    @DisplayName("GET Example without http basic returns unauthorised ")
+    void getExampleUnauthorised() {
+        RestAssuredMockMvc
+                .when()
+                    .get("/examples/{exampleId}", 1)
+                .then()
+                    .log().ifValidationFails()
+                    .status(HttpStatus.UNAUTHORIZED);
+    }
+
+    private RequestPostProcessor httpBasicAuth(){
+        return httpBasic("user", "password");
     }
 
     private List<ExampleDomain> buildExampleList(){
