@@ -1,4 +1,4 @@
-package com.example.skeleton.domain.exception;
+package com.example.skeleton.example.domain.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

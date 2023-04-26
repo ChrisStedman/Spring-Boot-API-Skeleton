@@ -1,10 +1,10 @@
-package com.example.skeleton.service;
+package com.example.skeleton.example.service;
 
 import com.example.skeleton.api.model.Example;
-import com.example.skeleton.domain.ExampleDomain;
-import com.example.skeleton.domain.exception.ExampleNotFoundException;
-import com.example.skeleton.mapper.ExampleMapper;
-import com.example.skeleton.repository.ExampleRepository;
+import com.example.skeleton.example.domain.ExampleDomain;
+import com.example.skeleton.example.domain.exception.ExampleNotFoundException;
+import com.example.skeleton.example.mapper.ExampleMapper;
+import com.example.skeleton.example.repository.ExampleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

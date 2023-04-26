@@ -1,7 +1,7 @@
-package com.example.skeleton.api;
+package com.example.skeleton.example.api;
 
-import com.example.skeleton.domain.ExampleDomain;
-import com.example.skeleton.repository.ExampleRepository;
+import com.example.skeleton.example.domain.ExampleDomain;
+import com.example.skeleton.example.repository.ExampleRepository;
 import io.restassured.http.ContentType;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;

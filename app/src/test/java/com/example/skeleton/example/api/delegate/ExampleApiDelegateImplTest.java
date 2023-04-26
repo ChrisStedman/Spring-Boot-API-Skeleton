@@ -1,9 +1,9 @@
-package com.example.skeleton.api.delegate;
+package com.example.skeleton.example.api.delegate;
 
 import com.example.skeleton.api.model.Example;
-import com.example.skeleton.domain.ExampleDomain;
-import com.example.skeleton.mapper.ExampleMapper;
-import com.example.skeleton.service.ExampleService;
+import com.example.skeleton.example.domain.ExampleDomain;
+import com.example.skeleton.example.mapper.ExampleMapper;
+import com.example.skeleton.example.service.ExampleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

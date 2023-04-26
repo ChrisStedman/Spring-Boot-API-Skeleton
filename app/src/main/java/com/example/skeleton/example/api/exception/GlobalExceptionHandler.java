@@ -1,7 +1,7 @@
-package com.example.skeleton.api.exception;
+package com.example.skeleton.example.api.exception;
 
 import com.example.skeleton.api.model.Error;
-import com.example.skeleton.domain.exception.ExampleNotFoundException;
+import com.example.skeleton.example.domain.exception.ExampleNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

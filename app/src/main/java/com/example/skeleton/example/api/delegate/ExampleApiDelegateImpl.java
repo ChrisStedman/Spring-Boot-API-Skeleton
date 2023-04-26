@@ -1,10 +1,10 @@
-package com.example.skeleton.api.delegate;
+package com.example.skeleton.example.api.delegate;
 
 import com.example.skeleton.api.ExampleApiDelegate;
 import com.example.skeleton.api.model.Example;
-import com.example.skeleton.domain.ExampleDomain;
-import com.example.skeleton.mapper.ExampleMapper;
-import com.example.skeleton.service.ExampleService;
+import com.example.skeleton.example.domain.ExampleDomain;
+import com.example.skeleton.example.mapper.ExampleMapper;
+import com.example.skeleton.example.service.ExampleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
