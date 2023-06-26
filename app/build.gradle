@@ -47,7 +47,7 @@ dependencies {
     }
 
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
-    implementation 'io.swagger.core.v3:swagger-core:2.2.9'
+    implementation 'io.swagger.core.v3:swagger-core:2.2.13'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mockito:mockito-core:5.3.1'
