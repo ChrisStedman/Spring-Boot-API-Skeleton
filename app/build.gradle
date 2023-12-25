@@ -1,8 +1,8 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.springframework.boot' version '3.0.6'
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.2.1'
+    id 'io.spring.dependency-management' version '1.1.4'
     id "org.openapi.generator" version "6.5.0"
 }
 
@@ -40,18 +40,18 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    implementation 'org.mapstruct:mapstruct:1.5.4.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.4.Final'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
     compileOnly('org.openapitools:openapi-generator-gradle-plugin:6.5.0') {
         exclude group: 'org.slf4j'
     }
 
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
-    implementation 'io.swagger.core.v3:swagger-core:2.2.9'
+    implementation 'io.swagger.core.v3:swagger-core:2.2.20'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'org.mockito:mockito-core:5.8.0'
     testImplementation 'io.rest-assured:spring-mock-mvc:5.3.0'
 }
 
