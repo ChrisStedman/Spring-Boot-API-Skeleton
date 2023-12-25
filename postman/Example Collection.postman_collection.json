@@ -113,6 +113,49 @@
 					"response": []
 				},
 				{
+					"name": "Get Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basePath}}/examples/:exampleId/data/:dataId",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"examples",
+								":exampleId",
+								"data",
+								":dataId"
+							],
+							"variable": [
+								{
+									"key": "exampleId",
+									"value": "1"
+								},
+								{
+									"key": "dataId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Example",
 					"request": {
 						"method": "POST",
@@ -137,8 +180,90 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Create Example Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"created\": \"2023-12-26T12:30:50Z\",\r\n    \"content\": \"Example data content\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basePath}}/examples/:exampleId/data",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"examples",
+								":exampleId",
+								"data"
+							],
+							"variable": [
+								{
+									"key": "exampleId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "password",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "user",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
