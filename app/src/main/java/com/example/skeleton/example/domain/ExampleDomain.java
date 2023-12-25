@@ -18,7 +18,6 @@ import java.util.List;
 @Table(name = "example_table")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class ExampleDomain {
 
     @Id

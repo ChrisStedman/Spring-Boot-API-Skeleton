@@ -73,7 +73,7 @@ public class ExampleApiTest {
                     .status(HttpStatus.NOT_FOUND)
                     .contentType(ContentType.JSON)
                     .body("code", equalTo("EX.404"))
-                    .body("message", equalTo("Example with id 1 not found"));
+                    .body("message", equalTo("EXAMPLE with id 1 not found"));
     }
 
     private List<ExampleDomain> buildExampleList(){
@@ -81,7 +81,11 @@ public class ExampleApiTest {
     }
 
     private ExampleDomain buildExampleDomain(){
-        return new ExampleDomain(1L, "Example");
+        ExampleDomain example = new ExampleDomain();
+        example.setExampleId(1L);
+        example.setName("Example");
+
+        return example;
     }
 
 }

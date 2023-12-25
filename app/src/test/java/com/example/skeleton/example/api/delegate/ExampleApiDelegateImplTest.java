@@ -56,7 +56,11 @@ class ExampleApiDelegateImplTest {
     }
 
     private ExampleDomain buildExampleDomain(){
-        return new ExampleDomain(1L, "Example");
+        ExampleDomain example = new ExampleDomain();
+        example.setExampleId(1L);
+        example.setName("Example");
+
+        return example;
     }
 
     private Example buildExample(){

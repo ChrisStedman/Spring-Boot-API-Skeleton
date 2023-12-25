@@ -153,7 +153,6 @@ components:
       required:
         - id
         - name
-        - data
     Error:
       type: object
       properties:

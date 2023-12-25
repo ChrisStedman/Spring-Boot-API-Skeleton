@@ -1,6 +1,7 @@
-package com.example.skeleton.example.api.exception;
+package com.example.skeleton.common.exception;
 
 import com.example.skeleton.api.model.Error;
+import com.example.skeleton.common.domain.exception.NotFoundException;
 import com.example.skeleton.example.domain.exception.ExampleNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,13 +13,13 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ExampleNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    public Error handleEntityNotFoundException(ExampleNotFoundException e){
+    public Error handleEntityNotFoundException(NotFoundException e){
         return new Error()
                 .code("EX.404")
-                .message(String.format("Example with id %s not found", e.getExampleId()));
+                .message(String.format("%s with id %s not found", e.getType(), e.getId()));
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)

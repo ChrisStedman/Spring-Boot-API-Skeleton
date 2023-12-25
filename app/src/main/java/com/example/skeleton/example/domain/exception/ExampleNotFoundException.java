@@ -1,10 +1,11 @@
 package com.example.skeleton.example.domain.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.example.skeleton.common.domain.exception.NotFoundException;
 
-@AllArgsConstructor
-@Getter
-public class ExampleNotFoundException extends RuntimeException{
-    private final Long exampleId;
+
+public class ExampleNotFoundException extends NotFoundException {
+
+    public ExampleNotFoundException(Long exampleId) {
+        super(exampleId, Type.EXAMPLE);
+    }
 }
